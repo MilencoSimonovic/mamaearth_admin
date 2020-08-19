@@ -1,17 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import { render } from "react-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+//router components
+import CampaignPage from "views/CampaignPage.js";
+import Influence from "views/InfluencePage.js";
+
+import 'assets/css/main.css';
+
+window.$host_url = 'https://famefactory2backend.infikick.com/api/v1/';
+
+const BasicRouters = () => (
+  <Router>
+    <Switch>
+      <Route exact path="/" component={Influence} />
+      <Route path="/influence" component={CampaignPage} />
+    </Switch>
+  </Router>
 );
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+render(<BasicRouters />, document.getElementById("root"));
